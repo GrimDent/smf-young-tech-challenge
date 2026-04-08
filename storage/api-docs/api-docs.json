@@ -1,0 +1,337 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Young Tech Challenge API",
+        "description": "API do faktur",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Serwer lokalny"
+        }
+    ],
+    "paths": {
+        "/api/contractors": {
+            "get": {
+                "tags": [
+                    "Contractors"
+                ],
+                "summary": "Pobierz listę kontrahentów",
+                "operationId": "b254c6fb295356b97dbca8c07321185c",
+                "responses": {
+                    "200": {
+                        "description": "Lista pobrana pomyślnie"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contractors"
+                ],
+                "summary": "Utwórz nowego kontrahenta",
+                "operationId": "2910043fcfe98d7ba5084926775871e6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jan Kowalski"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "ul. Prosta 1, Warszawa"
+                                    },
+                                    "tax_id": {
+                                        "type": "string",
+                                        "example": "1234567890"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Kontrahent utworzony"
+                    },
+                    "422": {
+                        "description": "Błąd walidacji"
+                    }
+                }
+            }
+        },
+        "/api/contractors/{id}": {
+            "get": {
+                "tags": [
+                    "Contractors"
+                ],
+                "summary": "Pobierz konkretnego kontrahenta",
+                "operationId": "10af24d7713f8a9b533b2a2aaede644b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sukces"
+                    },
+                    "404": {
+                        "description": "Nie znaleziono"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contractors"
+                ],
+                "summary": "Aktualizuj kontrahenta",
+                "operationId": "fcf1ebefb3a18a9cd36400d156905315",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Nowa Nazwa"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Nowy Adres"
+                                    },
+                                    "tax_id": {
+                                        "type": "string",
+                                        "example": "0987654321"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Zaktualizowano"
+                    },
+                    "404": {
+                        "description": "Nie znaleziono"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contractors"
+                ],
+                "summary": "Usuń kontrahenta",
+                "operationId": "a178988c9b1eef99ebfc4a3130c117d3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Usunięto"
+                    },
+                    "404": {
+                        "description": "Nie znaleziono"
+                    }
+                }
+            }
+        },
+        "/api/invoices": {
+            "get": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Pobierz listę faktur",
+                "operationId": "2e947f49543378e8d1ac24fc3ebcdcc7",
+                "responses": {
+                    "200": {
+                        "description": "Sukces"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Utwórz nową fakturę",
+                "operationId": "15892ddc0ad0649e0919d15345232fc5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "contractor_id",
+                                    "invoice_number",
+                                    "total_amount",
+                                    "currency",
+                                    "issue_date"
+                                ],
+                                "properties": {
+                                    "contractor_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "invoice_number": {
+                                        "type": "string",
+                                        "example": "FV/2024/001"
+                                    },
+                                    "issue_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-01-01"
+                                    },
+                                    "total_amount": {
+                                        "type": "number",
+                                        "example": 123.45
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "example": "PLN"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utworzono"
+                    }
+                }
+            }
+        },
+        "/api/invoices/{id}": {
+            "delete": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Usuń fakturę",
+                "operationId": "410b8a2e4b097016c3dea391349a789b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Usunięto"
+                    }
+                }
+            }
+        },
+        "/api/payments": {
+            "get": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Pobierz listę płatności",
+                "operationId": "afcbc19a07bf33c2fcb73b5c438b476c",
+                "responses": {
+                    "200": {
+                        "description": "Sukces"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Payments"
+                ],
+                "summary": "Zarejestruj płatność",
+                "operationId": "985b848b4cb6ca6115cf4ea71e314c0c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "invoice_id",
+                                    "amount",
+                                    "method",
+                                    "due_date"
+                                ],
+                                "properties": {
+                                    "invoice_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "example": 100
+                                    },
+                                    "method": {
+                                        "type": "string",
+                                        "example": "transfer"
+                                    },
+                                    "due_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-02-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Zarejestrowano"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Contractors",
+            "description": "Contractors"
+        },
+        {
+            "name": "Invoices",
+            "description": "Invoices"
+        },
+        {
+            "name": "Payments",
+            "description": "Payments"
+        }
+    ]
+}

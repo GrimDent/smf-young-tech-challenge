@@ -1,0 +1,18 @@
+### Test listy kontrahentów
+GET http://localhost:8000/api/contractors
+Accept: application/json
+
+### Test tworzenia kontrahenta
+POST http://localhost:8000/api/contractors
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Testowa Firma",
+    "address": "ul. Programistów 1, 00-001 Warszawa",
+    "tax_id": "1234567890"
+}
+
+### Test pobierania faktur (powinna być pusta lista [])
+GET http://localhost:8000/api/invoices
+Accept: application/json
