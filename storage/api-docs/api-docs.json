@@ -235,6 +235,31 @@
             }
         },
         "/api/invoices/{id}": {
+            "get": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Pobierz konkretną fakturę",
+                "operationId": "5d25d392f44d2cf516114d871e72ecb7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sukces"
+                    },
+                    "404": {
+                        "description": "Nie znaleziono"
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "Invoices"
@@ -263,7 +288,7 @@
                 "tags": [
                     "Invoices"
                 ],
-                "summary": "Prześlij plik faktury do przetworzenia OCR",
+                "summary": "Prześlij plik faktury do przetworzenia przez OCR i AI oraz zapisz w bazie",
                 "operationId": "a9060b0901ea99687c8a63053a509fb3",
                 "requestBody": {
                     "required": true,
@@ -283,11 +308,14 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "Tekst został wyodrębniony pomyślnie"
+                    "201": {
+                        "description": "Faktura została przetworzona i zapisana pomyślnie"
                     },
                     "400": {
-                        "description": "Błąd pliku"
+                        "description": "Nieprawidłowy plik lub błąd walidacji"
+                    },
+                    "500": {
+                        "description": "Błąd procesowania OCR/AI lub błąd bazy danych"
                     }
                 }
             }

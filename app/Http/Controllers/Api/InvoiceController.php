@@ -53,6 +53,23 @@ class InvoiceController extends Controller
         return response()->json(Invoice::create($data), 201);
     }
 
+    #[OA\Get(
+        path: '/api/invoices/{id}',
+        summary: 'Pobierz konkretną fakturę',
+        tags: ['Invoices'],
+        parameters: [
+            new OA\Parameter(name: 'id', in: 'path', required: true, schema: new OA\Schema(type: 'integer')),
+        ],
+        responses: [
+            new OA\Response(response: 200, description: 'Sukces'),
+            new OA\Response(response: 404, description: 'Nie znaleziono'),
+        ]
+    )]
+    public function show(string $id)
+    {
+        return response()->json(Invoice::with('contractor')->findOrFail($id));
+    }
+
     #[OA\Delete(
         path: '/api/invoices/{id}',
         summary: 'Usuń fakturę',

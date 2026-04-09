@@ -11,12 +11,15 @@ class AiAgentService
     public function processInvoiceText(string $rawText): array
     {
         $prompt = "Jesteś asystentem księgowym. Z poniższego tekstu z OCR faktury wyodrębnij dane:
-        1. NIP wystawcy (tylko cyfry),
-        2. Numer faktury,
-        3. Kwota brutto (jako liczba),
-        4. Data wystawienia (format RRRR-MM-DD).
-        Zwróć TYLKO czysty JSON bez żadnego dodatkowego tekstu.
-        Format: {\"nip\": \"\", \"number\": \"\", \"total\": 0.00, \"date\": \"\"}
+        1. nip (tylko cyfry),
+        2. vendor_name (pełna nazwa firmy sprzedawcy),
+        3. number (numer faktury),
+        4. total (kwota brutto jako liczba),
+        5. date (data wystawienia RRRR-MM-DD),
+        6. currency (waluta, np. PLN, EUR).
+
+        Zwróć TYLKO czysty JSON.
+        Format: {\"nip\": \"\", \"vendor_name\": \"\", \"number\": \"\", \"total\": 0.00, \"date\": \"\", \"currency\": \"\"}
 
         Tekst faktury:
         {$rawText}";
