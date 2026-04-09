@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ContractorController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\InvoiceUploadController;
 use App\Http\Controllers\Api\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,3 +14,4 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('contractors', ContractorController::class);
 Route::apiResource('invoices', InvoiceController::class);
 Route::apiResource('payments', PaymentController::class);
+Route::post('/invoices/upload', [InvoiceUploadController::class, 'upload']);

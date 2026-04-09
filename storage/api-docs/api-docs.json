@@ -258,6 +258,40 @@
                 }
             }
         },
+        "/api/invoices/upload": {
+            "post": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Prześlij plik faktury do przetworzenia OCR",
+                "operationId": "a9060b0901ea99687c8a63053a509fb3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "invoice_file": {
+                                        "description": "Plik obrazu (jpg, png) lub PDF",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tekst został wyodrębniony pomyślnie"
+                    },
+                    "400": {
+                        "description": "Błąd pliku"
+                    }
+                }
+            }
+        },
         "/api/payments": {
             "get": {
                 "tags": [
