@@ -14,14 +14,24 @@ System do zarządzania fakturami zintegrowany z Agentem AI, który automatycznie
 - PHP >= 8.2
 - Composer
 - Node.js & NPM (opcjonalnie dla frontendu)
-- **Tesseract OCR**: Zainstalowany w systemie (domyślna ścieżka: `C:\Program Files\Tesseract-OCR\tesseract.exe`)
-- **Ollama**: Zainstalowana i uruchomiona z modelem `llama3`.
+- **Tesseract OCR**: Zainstalowany w systemie
+- **Ollama**: Zainstalowana i uruchomiona z modelem `qwen3.5`.
 
-Link do pobrania Teseract OCR: [Link](https://github.com/tesseract-ocr/tessdoc?tab=readme-ov-file#5xx)
+## 🚀 Instrukcja uruchomienia z Dockerem
 
-Link do pobrania Ollama: [Link](https://ollama.com/download)
+### 1. Klonowanie repozytorium
+git clone https://github.com/GrimDent/smf-young-tech-challenge.git
 
-## 🚀 Instrukcja uruchomienia
+### 2. Zbudowanie obrazu
+docker-compose up -d --build
+
+### 3. Migracja bazy danych
+docker exec -it erp-app php artisan migrate
+
+### 4. Uruchomienie aplikacji
+php artisan serve
+
+## 🚀 Instrukcja uruchomienia bez Dockera
 
 ### 1. Klonowanie repozytorium
 git clone https://github.com/GrimDent/smf-young-tech-challenge.git

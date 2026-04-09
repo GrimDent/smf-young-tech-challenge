@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: erp-app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    volumes:
+      - .:/var/www
+      - db_data:/var/www/database/sqlite
+
+  webserver:
+    image: nginx:alpine
+    container_name: erp-webserver
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: erp-ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+
+  ollama-init:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    depends_on:
+      - ollama
+    entrypoint: >
+      /bin/sh -c "
+        sleep 5 &&
+        ollama pull qwen3.5:0.8b
+      "
+    environment:
+      - OLLAMA_HOST=ollama:11434
+
+volumes:
+  ollama_data:
+  db_data:

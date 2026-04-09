@@ -62,7 +62,6 @@ class InvoiceUploadController extends Controller
                 $rawText = 'Tekst testowy z faktury NIP 1234567890';
             } else {
                 $ocr = new TesseractOCR($fullPath);
-                $ocr->executable('C:\Program Files\Tesseract-OCR\tesseract.exe');
                 $rawText = $ocr->run();
             }
 

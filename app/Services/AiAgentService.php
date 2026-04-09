@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class AiAgentService
 {
-    protected $model = 'llama3';
+    protected $model = 'qwen3.5:0.8b';
 
     public function processInvoiceText(string $rawText): array
     {
@@ -14,7 +14,7 @@ class AiAgentService
         1. nip (tylko cyfry),
         2. vendor_name (pełna nazwa firmy sprzedawcy),
         3. number (numer faktury),
-        4. total (kwota brutto jako liczba),
+        4. total (całkowita kwota do zapłaty),
         5. date (data wystawienia RRRR-MM-DD),
         6. currency (waluta, np. PLN, EUR).
 
@@ -25,10 +25,11 @@ class AiAgentService
         {$rawText}";
 
         try {
-            $response = Http::timeout(30)->post('http://localhost:11434/api/generate', [
+            $response = Http::timeout(30)->post('http://ollama:11434/api/generate', [
                 'model' => $this->model,
                 'prompt' => $prompt,
                 'stream' => false,
+                'think' => false,
                 'format' => 'json',
             ]);
 
