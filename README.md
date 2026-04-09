@@ -151,4 +151,5 @@ php artisan test
 ### Mocking
 The AI Agent and TesseractOCR are mocked during automated testing to ensure faster execution and independence from external services.
 
-## Licencja: MIT (nie dotyczy przykładowej faktury, źródło: [link] (https://www.rafsoft.net/wzor-faktury-vat/))
+## Licencja: MIT 
+(nie dotyczy przykładowej faktury, źródło: [Link](https://www.rafsoft.net/wzor-faktury-vat/))
