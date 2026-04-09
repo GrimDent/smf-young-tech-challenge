@@ -17,8 +17,9 @@ System do zarządzania fakturami zintegrowany z Agentem AI, który automatycznie
 - **Tesseract OCR**: Zainstalowany w systemie (domyślna ścieżka: `C:\Program Files\Tesseract-OCR\tesseract.exe`)
 - **Ollama**: Zainstalowana i uruchomiona z modelem `llama3`.
 
-Link do pobrania Teseract OCR: https://github.com/tesseract-ocr/tessdoc?tab=readme-ov-file#5xx
-Link do pobrania Ollama: https://ollama.com/download
+Link do pobrania Teseract OCR: [Link](https://github.com/tesseract-ocr/tessdoc?tab=readme-ov-file#5xx)
+
+Link do pobrania Ollama: [Link](https://ollama.com/download)
 
 ## 🚀 Instrukcja uruchomienia
 
@@ -93,6 +94,7 @@ An invoice management system integrated with an AI Agent that automatically extr
 - **Ollama**: Installed and running with the llama3 model.
 
 Download Tesseract OCR: [Link](https://github.com/tesseract-ocr/tessdoc?tab=readme-ov-file#5xx)
+
 Download Ollama: [Link](https://ollama.com/download)
 
 ## 🚀 Setup Instructions
