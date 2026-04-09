@@ -28,10 +28,12 @@ git clone https://github.com/GrimDent/smf-young-tech-challenge.git
 
 ### 2. Instalacja zależności
 composer install
+
 npm install && npm run dev
 
 ### 3. Konfiguracja środowiska
 cp .env.example .env
+
 php artisan key:generate
 
 ### 4. Migracja bazy danych
